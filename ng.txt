@@ -1,1 +1,2 @@
-0.tcp.sa.ngrok.io:12420
+HOST=0.tcp.ngrok.io
+PORT=14567
