@@ -2,7 +2,7 @@
 $sshPath = "C:\Windows\System32\OpenSSH\ssh.exe"
 
 # Caminho da chave privada
-$keyPath = "C:\Users\SALA 1 ANO B\.ssh\revssh_key"
+$keyPath = "C:\Users\Testes\.ssh\revssh_key"
 
 # Executa SSH em segundo plano invisível
 Start-Process -FilePath $sshPath -ArgumentList `
@@ -13,6 +13,6 @@ Start-Process -FilePath $sshPath -ArgumentList `
     "-o", "ExitOnForwardFailure=yes", `
     "-R", "2222:localhost:22", `
     "logosofico@0.tcp.sa.ngrok.io", `
-    "-p", "16406", `
+    "-p", "19722", `
     "-N" `
     -WindowStyle Hidden
