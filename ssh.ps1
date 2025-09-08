@@ -16,8 +16,8 @@ $arguments = @(
     "-o", "ServerAliveCountMax=3",
     "-o", "ExitOnForwardFailure=yes",
     "-R", "2222:localhost:22",
-    "logosofico@0.tcp.sa.ngrok.io", 
-    "-p", "15032",
+    "u0_a416@0.tcp.sa.ngrok.io", 
+    "-p", "12418",
     "-N",
     "-vvv"
 )
