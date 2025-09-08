@@ -13,6 +13,6 @@ Start-Process -FilePath $sshPath -ArgumentList `
     "-o", "ExitOnForwardFailure=yes", `
     "-R", "2222:localhost:22", `
     "logosofico@0.tcp.sa.ngrok.io", `
-    "-p", "16431", `
+    "-p", "11788", `
     "-N" `
     -WindowStyle Hidden
