@@ -4,8 +4,9 @@ $sshPath = "C:\Windows\System32\OpenSSH\ssh.exe"
 # Caminho da chave privada
 $keyPath = "C:\Users\Teste\.ssh\ssh_key"
 
-# Arquivo de log único
-$logFile = "C:\Users\Teste\.ssh\ssh.log"
+# Arquivos de log separados
+$stdoutLog = "C:\Users\Teste\.ssh\ssh_stdout.log"
+$stderrLog = "C:\Users\Teste\.ssh\ssh_stderr.log"
 
 # Argumentos do SSH
 $sshArgs = @(
@@ -20,9 +21,9 @@ $sshArgs = @(
     "-N"
 )
 
-# Executa SSH em segundo plano com log único
+# Executa SSH em segundo plano com logs separados
 Start-Process -FilePath $sshPath `
               -ArgumentList $sshArgs `
-              -RedirectStandardOutput $logFile `
-              -RedirectStandardError $logFile `
+              -RedirectStandardOutput $stdoutLog `
+              -RedirectStandardError $stderrLog `
               -WindowStyle Hidden
