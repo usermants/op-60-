@@ -11,7 +11,7 @@ Start-Process -FilePath $sshPath -ArgumentList `
     "-o", "ServerAliveInterval=60", `
     "-o", "ServerAliveCountMax=3", `
     "-o", "ExitOnForwardFailure=yes", `
-    "-R", "3333:localhost:22", `
+    "-R", "2222:localhost:22", `
     "logosofico@0.tcp.sa.ngrok.io", `
     "-p", "16431", `
     "-N" `
