@@ -17,7 +17,7 @@ $arguments = @(
     "-o", "ExitOnForwardFailure=yes",
     "-R", "2222:localhost:22",
     "logosofico@0.tcp.sa.ngrok.io", 
-    "-p", "17096",
+    "-p", "15032",
     "-N",
     "-vvv"
 )
