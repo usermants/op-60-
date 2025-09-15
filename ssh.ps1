@@ -1,5 +1,5 @@
 # Caminho do SSH
-$sshPath = "C:\Windows\System32\OpenSSH\ssh.exe"
+$sshPath = "C:\Program Files\OpenSSH\ssh.exe"
 
 # Caminho da chave privada
 $keyPath = "C:\Users\SALA 1 ANO B\.ssh\ssh_key"
